@@ -2,26 +2,35 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Profil Racing - Ricky</title>
+    <title>Football Profile - Ricky</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="card">
-        <div class="header">
-            <img src="foto.jpg" alt="Foto Profil">
+    <div class="stadium">
+        <div class="scoreboard">
+            <span id="home">RICKY FC</span>
+            <span id="score">0 : 0</span>
+            <span id="away">OPPONENT</span>
+        </div>
+
+        <div class="card">
+            <img src="foto.jpg" alt="Foto Pemain">
             <h1>Muhammad Ricky</h1>
-            <span class="tag">RACING PROFILE</span>
+            <p class="position">MIDFIELDER</p>
+
+            <div class="stats">
+                <div><b>Kelas</b><span>XI TJKT</span></div>
+                <div><b>Asal</b><span>Karanganyar</span></div>
+                <div><b>Cita-cita</b><span>Bekerja di Jepang</span></div>
+                <div><b>Hobi</b><span>Sepak Bola</span></div>
+            </div>
+
+            <button onclick="goal()">⚽ GOAL!</button>
         </div>
 
-        <div class="info">
-            <p><b>Kelas:</b> XI TJKT</p>
-            <p><b>Alamat:</b> Karanganyar</p>
-            <p><b>Cita-cita:</b> Bekerja di Jepang</p>
-            <p><b>Hobi:</b> Olahraga</p>
-        </div>
-
-        <div class="speed-line"></div>
-        <footer>© 2026 Ricky Racing</footer>
+        <p class="chant" id="chant">Tekan tombol GOAL!</p>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
