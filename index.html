@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ricky | Portfolio</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
 *{
 margin:0;
@@ -71,7 +73,7 @@ p{
 font-size:14px;
 line-height:1.5;
 opacity:.85;
-margin-bottom:25px;
+margin-bottom:20px;
 }
 
 .btns a{
@@ -93,8 +95,36 @@ color:black;
 transform:translateY(-3px);
 }
 
-.footer{
+.btns i{
+margin-right:8px;
+}
+
+.music{
 margin-top:15px;
+}
+
+.music button{
+background:none;
+border:1px solid white;
+color:white;
+padding:6px 12px;
+border-radius:10px;
+margin:0 5px;
+}
+
+.music button:hover{
+background:#00ffd5;
+color:black;
+}
+
+#songTitle{
+margin-top:8px;
+font-size:12px;
+opacity:.8;
+}
+
+.footer{
+margin-top:12px;
 font-size:12px;
 opacity:.6;
 }
@@ -130,12 +160,27 @@ Saya pelajar yang tertarik dengan teknologi, jaringan komputer, dan web developm
 
 <div class="btns">
 
-<a href="https://instagram.com/rixx-125" target="_blank">Instagram</a>
+<a href="https://instagram.com/rixx-125" target="_blank">
+<i class="fa-brands fa-instagram"></i>Instagram
+</a>
 
-<a href="https://wa.me/6285198524615?text=Halo%20Ricky" target="_blank">WhatsApp</a>
+<a href="https://wa.me/6285198524615?text=Halo%20Ricky" target="_blank">
+<i class="fa-brands fa-whatsapp"></i>WhatsApp
+</a>
 
-<a href="https://github.com" target="_blank">GitHub</a>
+<a href="https://github.com" target="_blank">
+<i class="fa-brands fa-github"></i>GitHub
+</a>
 
+</div>
+
+<div class="music">
+<button onclick="prev()">⏮</button>
+<button onclick="play()">▶</button>
+<button onclick="next()">⏭</button>
+
+<p id="songTitle">Music</p>
+<audio id="audio"></audio>
 </div>
 
 <div class="footer">
@@ -145,6 +190,7 @@ Saya pelajar yang tertarik dengan teknologi, jaringan komputer, dan web developm
 </div>
 
 <script>
+// typing effect
 const text = "Ricky";
 let i = 0;
 
@@ -155,8 +201,41 @@ i++;
 setTimeout(typing,150);
 }
 }
-
 typing();
+
+// playlist
+const songs = [
+"musik1.mp3",
+"musik2.mp3",
+"musik3.mp3"
+];
+
+let index = 0;
+const audio = document.getElementById("audio");
+const title = document.getElementById("songTitle");
+
+function load(){
+audio.src = songs[index];
+title.innerHTML = songs[index];
+}
+
+function play(){
+audio.play();
+}
+
+function next(){
+index = (index + 1) % songs.length;
+load();
+audio.play();
+}
+
+function prev(){
+index = (index - 1 + songs.length) % songs.length;
+load();
+audio.play();
+}
+
+load();
 </script>
 
 </body>
