@@ -1,4 +1,23 @@
-.btns i{
-margin-right:8px;
-font-size:18px;
+.music{
+margin-top:15px;
+}
+
+.music button{
+background:none;
+border:1px solid white;
+color:white;
+padding:6px 12px;
+border-radius:10px;
+margin:0 5px;
+}
+
+.music button:hover{
+background:#00ffd5;
+color:black;
+}
+
+#songTitle{
+margin-top:8px;
+font-size:12px;
+opacity:.8;
 }
