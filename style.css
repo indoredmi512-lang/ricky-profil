@@ -1,105 +1,56 @@
-* {
-    box-sizing: border-box;
-}
-
 body {
     margin: 0;
+    background: #0d7a3a;
+    overflow: hidden;
+    font-family: Arial;
+}
+
+#field {
+    width: 100vw;
     height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(to bottom, #0b6623, #043d14);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
+    position: relative;
+    background: repeating-linear-gradient(
+        90deg,
+        #0d7a3a,
+        #0d7a3a 60px,
+        #0f8f45 60px,
+        #0f8f45 120px
+    );
 }
 
-.stadium {
-    width: 100%;
-    max-width: 420px;
-    padding: 20px;
+#player {
+    width: 50px;
+    height: 50px;
+    background: blue;
+    border-radius: 50%;
+    position: absolute;
+    left: 100px;
+    top: 100px;
 }
 
-.scoreboard {
-    background: #000;
-    color: #00ff66;
-    display: flex;
-    justify-content: space-between;
-    padding: 12px;
-    border-radius: 10px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    box-shadow: 0 0 15px rgba(0,255,100,0.5);
+#ball {
+    width: 30px;
+    height: 30px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    left: 300px;
+    top: 200px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
 }
 
 #score {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    color: white;
     font-size: 22px;
-}
-
-.card {
-    background: #ffffff;
-    color: black;
-    border-radius: 20px;
-    padding: 25px 20px;
-    text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    animation: pop 0.5s ease;
-}
-
-@keyframes pop {
-    from {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.card img {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    border: 5px solid #00ff66;
-    object-fit: cover;
-    margin-bottom: 10px;
-}
-
-.position {
-    color: #008f3f;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-}
-
-.stats div {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 0;
-    border-bottom: 1px dashed #008f3f;
-    font-size: 14px;
-}
-
-button {
-    margin-top: 15px;
-    background: #00ff66;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 30px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px #00ff66;
-}
-
-.chant {
-    margin-top: 15px;
-    text-align: center;
-    font-size: 14px;
-    color: #ccffdd;
+    background: rgba(0,0,0,0.4);
+    padding: 6px 12px;
+    border-radius: 10px;
 }
