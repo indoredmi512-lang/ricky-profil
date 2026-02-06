@@ -1,48 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-<title>Game Bola</title>
+<meta charset="UTF-8">
+<title>Website Perkenalan</title>
 
 <style>
 body {
     margin: 0;
-    background: #1b5e20;
-    overflow: hidden;
-    font-family: Arial;
-}
-
-#field {
-    width: 100vw;
     height: 100vh;
-    position: relative;
-}
-
-#player {
-    width: 50px;
-    height: 50px;
-    background: blue;
-    border-radius: 50%;
-    position: absolute;
-    left: 100px;
-    top: 100px;
-}
-
-#ball {
-    width: 30px;
-    height: 30px;
-    background: white;
-    border-radius: 50%;
-    position: absolute;
-    left: 300px;
-    top: 200px;
-}
-
-#score {
-    position: fixed;
-    top: 10px;
-    left: 10px;
+    background-image: url("https://images.unsplash.com/photo-1517841905240-472988babdf9");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial;
     color: white;
-    font-size: 20px;
+}
+
+/* efek gelap */
+body::before{
+    content:"";
+    position: fixed;
+    inset:0;
+    background: rgba(0,0,0,0.55);
+    z-index:-1;
+}
+
+.container {
+    text-align: center;
+    width: 350px;
+    padding: 30px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.profile {
+    width: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.name {
+    color: #00ffd5;
+}
+
+p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.buttons a {
+    display: inline-block;
+    margin: 10px;
+    padding: 8px 20px;
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.buttons a:hover {
+    background: white;
+    color: black;
 }
 </style>
 
@@ -50,52 +73,40 @@ body {
 
 <body>
 
-<div id="score">Score: 0</div>
+<div class="container">
 
-<div id="field">
-    <div id="player"></div>
-    <div id="ball"></div>
+<img src="https://i.imgur.com/8Km9tLL.png" class="profile">
+
+<h1>Halo, Saya <span class="name">Toples JW</span></h1>
+
+<h2 id="typing"></h2>
+
+<p>
+Saya pelajar yang tertarik dengan teknologi, jaringan komputer, dan web development.
+Saya suka belajar hal baru dan membuat project sederhana.
+</p>
+
+<div class="buttons">
+<a href="#">Instagram</a>
+<a href="#">WhatsApp</a>
+<a href="#">GitHub</a>
+</div>
+
 </div>
 
 <script>
-let player = document.getElementById("player");
-let ball = document.getElementById("ball");
-let scoreText = document.getElementById("score");
+let text = "Web Developer | Network Enthusiast";
+let i = 0;
 
-let x = 100;
-let y = 100;
-let score = 0;
-
-document.addEventListener("keydown", function(e){
-
-    if(e.key == "ArrowUp") y -= 10;
-    if(e.key == "ArrowDown") y += 10;
-    if(e.key == "ArrowLeft") x -= 10;
-    if(e.key == "ArrowRight") x += 10;
-
-    player.style.left = x + "px";
-    player.style.top = y + "px";
-
-    checkCollision();
-});
-
-function checkCollision(){
-    let p = player.getBoundingClientRect();
-    let b = ball.getBoundingClientRect();
-
-    if(
-        p.left < b.right &&
-        p.right > b.left &&
-        p.top < b.bottom &&
-        p.bottom > b.top
-    ){
-        score++;
-        scoreText.innerHTML = "Score: " + score;
-
-        ball.style.left = Math.random() * (window.innerWidth - 40) + "px";
-        ball.style.top = Math.random() * (window.innerHeight - 40) + "px";
+function typing(){
+    if(i < text.length){
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing,100);
     }
 }
+
+typing();
 </script>
 
 </body>
