@@ -1,59 +1,56 @@
-let homeScore = 0;
-
-// buat audio context
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-const audioCtx = new AudioContext();
-
-let chants = [
-    "GOOOAAALLL!!! ⚽🔥",
-    "OLE OLE OLE OLE!",
-    "RICKY! RICKY! RICKY!",
-    "WHAT A GOAL!",
-    "STADION BERGEMURUH!"
-];
-
-// fungsi bunyi GOAL (beep cepat + bass)
-function playGoalSound() {
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-
-    osc.type = "sawtooth";      // suara kasar (stadion)
-    osc.frequency.setValueAtTime(180, audioCtx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(
-        600,
-        audioCtx.currentTime + 0.15
-    );
-
-    gain.gain.setValueAtTime(0.8, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(
-        0.01,
-        audioCtx.currentTime + 0.4
-    );
-
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.4);
+body {
+    margin: 0;
+    background: #0d7a3a;
+    overflow: hidden;
+    font-family: Arial;
 }
 
-function goal() {
-    // wajib resume audio (aturan browser)
-    if (audioCtx.state === "suspended") {
-        audioCtx.resume();
-    }
+#field {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background: repeating-linear-gradient(
+        90deg,
+        #0d7a3a,
+        #0d7a3a 60px,
+        #0f8f45 60px,
+        #0f8f45 120px
+    );
+}
 
-    homeScore++;
-    document.getElementById("score").innerText = homeScore + " : 0";
+#player {
+    width: 50px;
+    height: 50px;
+    background: blue;
+    border-radius: 50%;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+}
 
-    playGoalSound();
+#ball {
+    width: 30px;
+    height: 30px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    left: 300px;
+    top: 200px;
+    animation: spin 1s linear infinite;
+}
 
-    let randomChant = chants[Math.floor(Math.random() * chants.length)];
-    document.getElementById("chant").innerText = randomChant;
+@keyframes spin {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
 
-    // efek stadion flash
-    document.body.style.boxShadow = "0 0 40px #00ff66 inset";
-    setTimeout(() => {
-        document.body.style.boxShadow = "none";
-    }, 300);
+#score {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    color: white;
+    font-size: 22px;
+    background: rgba(0,0,0,0.4);
+    padding: 6px 12px;
+    border-radius: 10px;
 }
