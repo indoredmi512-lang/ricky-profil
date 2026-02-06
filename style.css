@@ -1,23 +1,23 @@
-.music{
-margin-top:15px;
+.cover{
+width:160px;
+height:160px;
+border-radius:50%;
+margin:15px auto;
+display:block;
+animation:spin 6s linear infinite;
 }
 
-.music button{
-background:none;
-border:1px solid white;
-color:white;
-padding:6px 12px;
-border-radius:10px;
-margin:0 5px;
+@keyframes spin{
+from{transform:rotate(0);}
+to{transform:rotate(360deg);}
 }
 
-.music button:hover{
-background:#00ffd5;
-color:black;
+.beat{
+animation:beat .4s infinite alternate;
+box-shadow:0 0 25px #00ffd5;
 }
 
-#songTitle{
-margin-top:8px;
-font-size:12px;
-opacity:.8;
+@keyframes beat{
+from{transform:scale(1);}
+to{transform:scale(1.1);}
 }
