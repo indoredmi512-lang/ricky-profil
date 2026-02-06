@@ -2,115 +2,98 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Website Perkenalan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ricky Portfolio</title>
 
 <style>
-body {
-    margin: 0;
-    height: 100vh;
-    background-image: url("foto.jpg");
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial;
-    color: white;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
 }
 
-/* efek gelap */
-body::before{
-    content:"";
-    position: fixed;
-    inset:0;
-    background: rgba(0,0,0,0.55);
-    z-index:-1;
+body{
+height:100vh;
+background:url('background.jpg') center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
-.container {
-    text-align: center;
-    width: 350px;
-    padding: 30px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+.card{
+background:rgba(0,0,0,.55);
+backdrop-filter:blur(6px);
+padding:25px;
+border-radius:20px;
+text-align:center;
+color:white;
+width:300px;
 }
 
-.profile {
-    width: 120px;
-    border-radius: 50%;
-    margin-bottom: 10px;
+h1 span{
+color:#00ffd5;
 }
 
-.name {
-    color: #00ffd5;
+p{
+font-size:14px;
+margin:10px 0 20px;
 }
 
-p {
-    font-size: 14px;
-    opacity: 0.8;
+.btns a{
+display:block;
+margin:10px auto;
+padding:10px;
+border-radius:25px;
+border:1px solid white;
+color:white;
+text-decoration:none;
+width:200px;
+transition:.3s;
 }
 
-.buttons a {
-    display: inline-block;
-    margin: 10px;
-    padding: 8px 20px;
-    text-decoration: none;
-    color: white;
-    border: 1px solid white;
-    border-radius: 20px;
-    transition: 0.3s;
-}
-
-.buttons a:hover {
-    background: white;
-    color: black;
+.btns a:hover{
+background:#00ffd5;
+color:black;
+transform:scale(1.05);
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
+<div class="card">
+<h1>Halo, Saya <span>Ricky</span></h1>
 
-<img src="https://i.imgur.com/8Km9tLL.png" class="profile">
-
-<h1>Halo, Saya <span class="name">Ricky</span></h1>
-
-<h2 id="typing"></h2>
+<h3>Web Developer | Network Enthusiast</h3>
 
 <p>
 Saya pelajar yang tertarik dengan teknologi, jaringan komputer, dan web development.
-Saya suka belajar hal baru dan membuat project sederhana.
 </p>
 
-<div class="buttons">
-  I
-<a href="https://instagram.com/rixx-125" class="btn" target="_blank">
+<div class="btns">
+
+<a href="https://instagram.com/rixx-125" target="_blank">
 Instagram
 </a>
-</a>>
-<a href="#">WhatsApp</a>
-<a href="#">GitHub</a>
-</div>
 
+<a href="https://wa.me/6285198524615?text=Halo%20Ricky" target="_blank">
+WhatsApp
+</a>
+
+<a href="https://github.com" target="_blank">
+GitHub
+</a>
+
+</div>
 </div>
 
 <script>
-let text = "Web Developer | Network Enthusiast";
-let i = 0;
+console.log("Website Ricky aktif");
+</script>
 
-function typing(){
-    if(i < text.length){
-        document.getElementById("typing").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typing,100);
-    }
-}
-
-typing();
+</body>
+</html>typing();
 </script>
 
 </body>
