@@ -1,9 +1,51 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-<meta charset="UTF-8">
 <title>Game Bola</title>
-<link rel="stylesheet" href="style.css">
+
+<style>
+body {
+    margin: 0;
+    background: #1b5e20;
+    overflow: hidden;
+    font-family: Arial;
+}
+
+#field {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+#player {
+    width: 50px;
+    height: 50px;
+    background: blue;
+    border-radius: 50%;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+}
+
+#ball {
+    width: 30px;
+    height: 30px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    left: 300px;
+    top: 200px;
+}
+
+#score {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    color: white;
+    font-size: 20px;
+}
+</style>
+
 </head>
 
 <body>
@@ -15,6 +57,46 @@
     <div id="ball"></div>
 </div>
 
-<script src="script.js"></script>
+<script>
+let player = document.getElementById("player");
+let ball = document.getElementById("ball");
+let scoreText = document.getElementById("score");
+
+let x = 100;
+let y = 100;
+let score = 0;
+
+document.addEventListener("keydown", function(e){
+
+    if(e.key == "ArrowUp") y -= 10;
+    if(e.key == "ArrowDown") y += 10;
+    if(e.key == "ArrowLeft") x -= 10;
+    if(e.key == "ArrowRight") x += 10;
+
+    player.style.left = x + "px";
+    player.style.top = y + "px";
+
+    checkCollision();
+});
+
+function checkCollision(){
+    let p = player.getBoundingClientRect();
+    let b = ball.getBoundingClientRect();
+
+    if(
+        p.left < b.right &&
+        p.right > b.left &&
+        p.top < b.bottom &&
+        p.bottom > b.top
+    ){
+        score++;
+        scoreText.innerHTML = "Score: " + score;
+
+        ball.style.left = Math.random() * (window.innerWidth - 40) + "px";
+        ball.style.top = Math.random() * (window.innerHeight - 40) + "px";
+    }
+}
+</script>
+
 </body>
 </html>
