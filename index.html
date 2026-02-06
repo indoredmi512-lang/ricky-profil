@@ -8,234 +8,217 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
 
 body{
 min-height:100vh;
-background:url('background.jpg') center/cover no-repeat;
 display:flex;
 align-items:center;
 justify-content:center;
+background:linear-gradient(-45deg,#000428,#004e92,#000428,#1f1c2c);
+background-size:400% 400%;
+animation:bg 12s ease infinite;
 overflow:hidden;
 }
 
-.overlay{
-position:absolute;
-inset:0;
-background:rgba(0,0,0,.35);
+@keyframes bg{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
 }
 
 .card{
-position:relative;
-background:rgba(255,255,255,.15);
-backdrop-filter:blur(10px);
-padding:30px 25px;
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(15px);
+padding:25px;
 border-radius:25px;
 text-align:center;
 color:white;
 width:90%;
 max-width:350px;
-box-shadow:0 20px 40px rgba(0,0,0,.4);
-
-opacity:0;
-transform:translateY(40px);
+box-shadow:0 20px 50px rgba(0,0,0,.5);
 animation:masuk 1s forwards;
+z-index:2;
 }
 
 @keyframes masuk{
-to{
-opacity:1;
-transform:translateY(0);
-}
+from{opacity:0;transform:translateY(40px)}
+to{opacity:1;transform:translateY(0)}
 }
 
-h1{
-font-size:28px;
-margin-bottom:5px;
+.profile{
+width:90px;height:90px;border-radius:50%;
+border:3px solid #00ffd5;
+object-fit:cover;margin-bottom:10px;
 }
 
-h1 span{
-color:#00ffd5;
+.cover{
+width:120px;height:120px;border-radius:15px;
+margin:10px auto;object-fit:cover;
+border:2px solid #00ffd5;
 }
 
-h3{
-font-weight:400;
-margin-bottom:15px;
-opacity:.9;
+.rotate{
+animation:spin 6s linear infinite;
 }
 
-p{
-font-size:14px;
-line-height:1.5;
-opacity:.85;
-margin-bottom:20px;
+@keyframes spin{
+to{transform:rotate(360deg)}
 }
+
+h1 span{color:#00ffd5}
+p{font-size:14px;opacity:.8;margin:10px 0}
 
 .btns a{
-display:block;
-width:100%;
-padding:12px;
-margin:10px 0;
-border-radius:30px;
-border:1px solid white;
-color:white;
-text-decoration:none;
-font-size:16px;
-transition:.3s ease;
+display:block;padding:12px;margin:10px 0;
+border-radius:30px;border:1px solid #00ffd5;
+color:white;text-decoration:none;
+transition:.3s;
 }
 
 .btns a:hover{
-background:#00ffd5;
-color:black;
-transform:translateY(-3px);
-}
-
-.btns i{
-margin-right:8px;
-}
-
-.music{
-margin-top:15px;
+background:#00ffd5;color:black;
+box-shadow:0 0 15px #00ffd5;
 }
 
 .music button{
-background:none;
-border:1px solid white;
-color:white;
-padding:6px 12px;
-border-radius:10px;
-margin:0 5px;
+background:none;border:1px solid #00ffd5;color:white;
+padding:6px 10px;border-radius:8px;margin:5px;
 }
 
-.music button:hover{
-background:#00ffd5;
-color:black;
-}
+.music button:hover{background:#00ffd5;color:black}
 
-#songTitle{
-margin-top:8px;
-font-size:12px;
-opacity:.8;
-}
-
-.footer{
-margin-top:12px;
-font-size:12px;
-opacity:.6;
-}
+#progress{width:100%;height:6px;background:#333;border-radius:10px;margin-top:8px}
+#bar{height:100%;width:0;background:#00ffd5}
 
 .cursor{
-display:inline-block;
-width:3px;
-height:22px;
-background:#00ffd5;
-margin-left:4px;
-animation:blink 1s infinite;
+display:inline-block;width:3px;height:20px;background:#00ffd5;
+animation:blink 1s infinite;margin-left:4px;
 }
 
-@keyframes blink{
-50%{opacity:0;}
-}
+@keyframes blink{50%{opacity:0}}
+
+.footer{font-size:11px;opacity:.6;margin-top:10px}
+
+canvas{position:absolute;inset:0}
 </style>
 </head>
 
 <body>
 
-<div class="overlay"></div>
+<canvas id="particles"></canvas>
 
 <div class="card">
 
+<img src="profile.jpg" class="profile">
+
 <h1>Halo, Saya <span id="typing"></span><span class="cursor"></span></h1>
 
-<h3>Web Developer | Network Enthusiast</h3>
-
-<p>
-Saya pelajar yang tertarik dengan teknologi, jaringan komputer, dan web development.
-</p>
+<p>Pelajar | Web & Network</p>
 
 <div class="btns">
-
-<a href="https://instagram.com/rixx-125" target="_blank">
-<i class="fa-brands fa-instagram"></i>Instagram
-</a>
-
-<a href="https://wa.me/6285198524615?text=Halo%20Ricky" target="_blank">
-<i class="fa-brands fa-whatsapp"></i>WhatsApp
-</a>
-
-<a href="https://github.com" target="_blank">
-<i class="fa-brands fa-github"></i>GitHub
-</a>
-
+<a href="https://instagram.com/rixx-125" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
+<a href="https://wa.me/6285198524615?text=Halo%20Ricky" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+<a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
 </div>
+
+<img id="cover" class="cover">
 
 <div class="music">
 <button onclick="prev()">⏮</button>
-<button onclick="play()">▶</button>
+<button onclick="toggle()">▶</button>
 <button onclick="next()">⏭</button>
 
-<p id="songTitle">Music</p>
+<div id="progress"><div id="bar"></div></div>
+
+<p id="songTitle"></p>
 <audio id="audio"></audio>
 </div>
 
-<div class="footer">
-© 2026 Ricky
-</div>
+<div class="footer">© 2026 Ricky</div>
 
 </div>
 
 <script>
-// typing effect
-const text = "Ricky";
-let i = 0;
-
+// typing
+const t="Ricky";let i=0;
 function typing(){
-if(i < text.length){
-document.getElementById("typing").innerHTML += text.charAt(i);
-i++;
-setTimeout(typing,150);
-}
+if(i<t.length){
+document.getElementById("typing").innerHTML+=t[i++];
+setTimeout(typing,150);}
 }
 typing();
 
 // playlist
-const songs = [
-"musik1.mp3",
-"musik2.mp3",
-"musik3.mp3"
-];
+const songs=["musik1.mp3","musik2.mp3","musik3.mp3"];
+const titles=["Lagu Pertama","Lagu Kedua","Lagu Ketiga"];
+const covers=["cover1.jpg","cover2.jpg","cover3.jpg"];
 
-let index = 0;
-const audio = document.getElementById("audio");
-const title = document.getElementById("songTitle");
+let idx=0;
+const audio=document.getElementById("audio");
+const bar=document.getElementById("bar");
+const title=document.getElementById("songTitle");
+const cover=document.getElementById("cover");
 
 function load(){
-audio.src = songs[index];
-title.innerHTML = songs[index];
+audio.src=songs[idx];
+title.innerHTML=titles[idx];
+cover.src=covers[idx];
 }
 
-function play(){
+function toggle(){
+if(audio.paused){
 audio.play();
+cover.classList.add("rotate");
+}else{
+audio.pause();
+cover.classList.remove("rotate");
+}
 }
 
 function next(){
-index = (index + 1) % songs.length;
-load();
-audio.play();
+idx=(idx+1)%songs.length;
+load();audio.play();cover.classList.add("rotate");
 }
 
 function prev(){
-index = (index - 1 + songs.length) % songs.length;
-load();
-audio.play();
+idx=(idx-1+songs.length)%songs.length;
+load();audio.play();cover.classList.add("rotate");
 }
 
+audio.addEventListener("timeupdate",()=>{
+bar.style.width=(audio.currentTime/audio.duration)*100+"%";
+});
+
+// autoplay
+window.onload=()=>{
 load();
+audio.play().catch(()=>{});
+};
+
+// particles
+const c=document.getElementById("particles");
+const ctx=c.getContext("2d");
+c.width=innerWidth;c.height=innerHeight;
+
+let p=[];
+for(let i=0;i<60;i++)
+p.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2+1,dx:Math.random()-.5,dy:Math.random()-.5});
+
+function draw(){
+ctx.clearRect(0,0,c.width,c.height);
+p.forEach(o=>{
+ctx.beginPath();
+ctx.arc(o.x,o.y,o.r,0,Math.PI*2);
+ctx.fillStyle="#00ffd5";
+ctx.fill();
+o.x+=o.dx;o.y+=o.dy;
+if(o.x<0||o.x>c.width)o.dx*=-1;
+if(o.y<0||o.y>c.height)o.dy*=-1;
+});
+requestAnimationFrame(draw);
+}
+draw();
 </script>
 
 </body>
